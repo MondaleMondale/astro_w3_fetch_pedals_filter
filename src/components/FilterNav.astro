@@ -1,0 +1,34 @@
+---
+---
+
+<button class="filter_btn" data-filter="dynamics_filter">Dynamics/Filter</button>
+<button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
+<button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
+<button class="filter_btn" data-filter="all">All</button>
+
+<script>
+  document.querySelectorAll(".filter_btn").forEach((each) => {
+    each.addEventListener("click", (evt) => {
+      document.querySelectorAll(".pedal_card").forEach((each) => {
+        if (each.dataset.type === evt.target.dataset.filter || evt.target.dataset.filter === "all") {
+          each.style.display = "flex";
+        } else {
+          each.style.display = "none";
+        }
+      });
+    });
+  });
+  // document.querySelector(".dyn_filt").addEventListener("click", () => {
+  //   document.querySelectorAll(".pedal_card").forEach((each) => {
+  //     if (each.dataset.type !== "dynamics_filter") {
+  //       each.style.display = "none";
+  //     }
+  //   });
+  // });
+</script>
+
+<style>
+  h3 {
+    color: wheat;
+  }
+</style>

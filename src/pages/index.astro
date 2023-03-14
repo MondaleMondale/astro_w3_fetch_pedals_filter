@@ -1,15 +1,39 @@
 ---
+import { Debug } from "astro/components";
+import PedalCard from "../components/PedalCard.astro";
+import FilterNav from "../components/FilterNav.astro";
+import "../styles/global.css";
+const url = "https://fcmtldrylnhpqrnkuwjf.supabase.co/rest/v1/pedals_w_3";
+
+const options = {
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjbXRsZHJ5bG5ocHFybmt1d2pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1Mzg1MjUsImV4cCI6MTk5NDExNDUyNX0.qatEOFaoqB22SCcTOwhrrIg__mMFujY9haf6ixYe5oc",
+  },
+};
+const response = await fetch(url, options);
+const myJson = await response.json();
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <title>Astro</title>
+
+  <body>
+    <details class="debugger">
+      <summary>o</summary>
+      <div class="debugContainer">
+        <Debug {myJson} />
+      </div>
+    </details>
+    <main>
+      <FilterNav />
+      <section>
+        {myJson.map((element) => <PedalCard jsonObj={element} />)}
+      </section>
+    </main>
+  </body>
 </html>
