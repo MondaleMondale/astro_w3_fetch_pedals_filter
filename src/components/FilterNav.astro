@@ -5,8 +5,10 @@
 <button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
 <button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
 <button class="filter_btn" data-filter="all">All</button>
+<button class="sort_btn">Toggle Sort</button>
 
 <script>
+  let toggle = -1;
   document.querySelectorAll(".filter_btn").forEach((each) => {
     each.addEventListener("click", (evt) => {
       document.querySelectorAll(".pedal_card").forEach((each) => {
@@ -17,6 +19,23 @@
         }
       });
     });
+  });
+
+  document.querySelector(".sort_btn").addEventListener("click", () => {
+    toggle *= -1;
+    const pedal_cards = [...document.querySelectorAll(".pedal_card")];
+    console.log("SORT", pedal_cards[0].dataset.shortname);
+
+    pedal_cards.sort((a, b) => {
+      if (a.dataset.shortname < b.dataset.shortname) {
+        return 1 * toggle;
+      }
+      if (a.dataset.shortname > b.dataset.shortname) {
+        return -1 * toggle;
+      }
+    });
+
+    pedal_cards.forEach((element) => document.querySelector(".card_container").appendChild(element));
   });
 </script>
 
