@@ -7,9 +7,9 @@ const { jsonObj } = Astro.props;
     <img src={"bosspedaler/" + jsonObj.image} alt="guitar effect" />
   </div>
 
-  <div id="text_container">
+  <a id="text_container" href={"/pedals/" + jsonObj.slug}>
     <h3>{jsonObj.shortname}</h3>
-  </div>
+  </a>
 </article>
 <style>
   article {
@@ -23,12 +23,6 @@ const { jsonObj } = Astro.props;
     /* aspect-ratio: 1/2; */
   }
 
-  #text_container {
-    /* margin-top: 4px; */
-    background-color: white;
-    width: 90%;
-    border-radius: 4px;
-  }
   #img_container {
     display: flex;
     justify-content: center;
@@ -39,6 +33,19 @@ const { jsonObj } = Astro.props;
     height: 80%;
     border-radius: 4px;
     margin-bottom: 10px;
+  }
+  #text_container {
+    /* margin-top: 4px; */
+    background-color: white;
+    width: 90%;
+    border-radius: 4px;
+    transition: 0.5s all;
+    text-decoration: none;
+    color: rgb(227, 174, 105);
+  }
+  #text_container:hover {
+    background-color: rgb(225, 224, 224);
+    color: slateblue;
   }
   h3 {
     margin-left: 12px;
