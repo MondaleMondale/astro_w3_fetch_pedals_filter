@@ -1,0 +1,72 @@
+---
+const { myJson } = Astro.props;
+const jsonSTR = JSON.stringify(myJson);
+---
+
+<div class="json_obj" data-json={jsonSTR}></div>
+<button class="filter_btn" data-filter="dynamics_filter">Dynamics/Filter</button>
+<button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
+<button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
+<button class="filter_btn" data-filter="all">All</button>
+<button class="sort_btn">Toggle Sort</button>
+
+<script>
+  const theJson = JSON.parse(document.querySelector(".json_obj").dataset.json);
+  const pedal_cards = [...document.querySelectorAll(".pedal_card")];
+  console.log(theJson);
+
+  function setCardContent(card, jsonObj) {
+    card.querySelector("h3").textContent = jsonObj.shortname;
+    card.querySelector("img").src = "bosspedaler/" + jsonObj.image;
+    card.querySelector("a").href = "/pedals/" + jsonObj.slug;
+  }
+  // setCardContent(pedal_cards[1], theJson[0]);
+  let theFilter = "all";
+  let jsonToShow;
+  let toggle = 1;
+
+  document.querySelectorAll(".filter_btn").forEach((each) => {
+    each.addEventListener("click", (evt) => {
+      theFilter = evt.target.dataset.filter;
+      doFilterAndSort();
+    });
+  });
+  document.querySelector(".sort_btn").addEventListener("click", () => {
+    console.log("SORT");
+    toggle *= -1;
+    doFilterAndSort();
+  });
+  function doFilterAndSort() {
+    jsonToShow = theJson.filter((elm) => elm.type === theFilter || theFilter === "all");
+    jsonToShow.sort((a, b) => {
+      if (a.shortname < b.shortname) {
+        return 1 * toggle;
+      }
+      if (a.shortname > b.shortname) {
+        return -1 * toggle;
+      }
+    });
+    console.log(jsonToShow);
+    showCards();
+  }
+  function showCards() {
+    pedal_cards.forEach((elm, i) => {
+      if (i >= jsonToShow.length) {
+        elm.style.visibility = "hidden";
+        console.log("IZ OVER");
+      } else {
+        setCardContent(elm, jsonToShow[i]);
+        elm.style.visibility = "visible";
+      }
+    });
+  }
+</script>
+
+<style>
+  h3 {
+    color: wheat;
+  }
+  button {
+    background-color: rgb(76, 113, 20);
+  }
+</style>
