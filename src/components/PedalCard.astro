@@ -4,7 +4,7 @@ const { jsonObj } = Astro.props;
 
 <article data-type={jsonObj.type} data-shortname={jsonObj.shortname} class="pedal_card">
   <div id="img_container">
-    <img src={"bosspedaler/" + jsonObj.image} alt="guitar effect" />
+    <img src={"/bosspedaler/" + jsonObj.image} alt="guitar effect" />
   </div>
 
   <a id="text_container" href={"/pedals/" + jsonObj.slug}>
