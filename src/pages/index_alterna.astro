@@ -1,9 +1,9 @@
 ---
 import { Debug } from "astro/components";
 import Nav from "../components/Nav.astro";
-import FilterNav from "../components/FilterNav.astro";
+import FilterNav_alterna from "../components/FilterNav_alterna.astro";
 import PedalCard from "../components/PedalCard.astro";
-//import FilterNav_alterna from "../components/FilterNav_alterna.astro";
+//import FilterNav from "../components/FilterNav.astro";
 import "../styles/global.css";
 const url = "https://fcmtldrylnhpqrnkuwjf.supabase.co/rest/v1/pedals_w_3";
 
@@ -32,8 +32,10 @@ const myJson = await response.json();
       </div>
     </details>
     <main>
-      <Nav />
-      <FilterNav {myJson} />
+      <nav>
+        <Nav />
+        <FilterNav_alterna {myJson} />
+      </nav>
       <section class="card_container">
         {myJson.map((element) => <PedalCard jsonObj={element} />)}
       </section>
