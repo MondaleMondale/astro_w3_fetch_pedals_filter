@@ -1,21 +1,22 @@
 ---
 ---
 
-<button class="filter_btn" data-filter="dynamics_filter">Dynamics/Filter</button>
-<button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
-<button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
-<button class="filter_btn" data-filter="all">All</button>
-<button class="sort_btn">Toggle Sort</button>
-
+<div>
+  <button class="filter_btn" data-filter="dynamics_filter">Dynamics/Filter</button>
+  <button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
+  <button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
+  <button class="filter_btn" data-filter="all">All</button>
+  <button class="sort_btn">Toggle Sort</button>
+</div>
 <script>
   let toggle = -1;
   document.querySelectorAll(".filter_btn").forEach((each) => {
     each.addEventListener("click", (evt) => {
       document.querySelectorAll(".pedal_card").forEach((each) => {
         if (evt.target.dataset.filter === each.dataset.type || evt.target.dataset.filter === "all") {
-          each.style.display = "flex";
+          each.classList.remove("hide");
         } else {
-          each.style.display = "none";
+          each.classList.add("hide");
         }
       });
     });

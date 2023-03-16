@@ -4,12 +4,13 @@ const jsonSTR = JSON.stringify(myJson);
 ---
 
 <div class="json_obj" data-json={jsonSTR}></div>
-<button class="filter_btn" data-filter="dynamics_filter">Dynamics/Filter</button>
-<button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
-<button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
-<button class="filter_btn" data-filter="all">All</button>
-<button class="sort_btn">Toggle Sort</button>
-
+<div>
+  <button class="filter_btn" data-filter="dynamics_filter">Dynamics/Filter</button>
+  <button class="filter_btn" data-filter="pitch_modulation">Pitch/Modulation</button>
+  <button class="filter_btn" data-filter="distortion_overdrive_fuzz">Distortion/Overdrive/Fuzz</button>
+  <button class="filter_btn" data-filter="all">All</button>
+  <button class="sort_btn">Toggle Sort</button>
+</div>
 <script>
   const theJson = JSON.parse(document.querySelector(".json_obj").dataset.json);
   const pedal_cards = [...document.querySelectorAll(".pedal_card")];
@@ -52,10 +53,12 @@ const jsonSTR = JSON.stringify(myJson);
   function showCards() {
     pedal_cards.forEach((elm, i) => {
       if (i >= jsonToShow.length) {
-        elm.style.visibility = "hidden";
+        // elm.style.visibility = "hidden";
+        elm.classList.add("hide");
         console.log("IZ OVER");
       } else {
-        elm.style.visibility = "visible";
+        // elm.style.visibility = "visible";
+        elm.classList.remove("hide");
         setCardContent(elm, jsonToShow[i]);
       }
     });

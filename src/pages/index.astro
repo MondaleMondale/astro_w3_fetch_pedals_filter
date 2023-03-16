@@ -34,6 +34,7 @@ const myJson = await response.json();
     <main>
       <Nav />
       <FilterNav {myJson} />
+
       <section class="card_container">
         {myJson.map((element) => <PedalCard jsonObj={element} />)}
       </section>
