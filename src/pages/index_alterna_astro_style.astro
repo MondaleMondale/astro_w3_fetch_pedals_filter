@@ -1,0 +1,73 @@
+---
+import { Debug } from "astro/components";
+import Nav from "../components/Nav.astro";
+// import FilterNav_alterna_astro_style from "../components/FilterNav_alterna_astro_style.astro";
+import PedalCard from "../components/PedalCard.astro";
+//import FilterNav_alterna from "../components/FilterNav_alterna.astro";
+import "../styles/global.css";
+const url = "https://fcmtldrylnhpqrnkuwjf.supabase.co/rest/v1/pedals_w_3";
+
+const options = {
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjbXRsZHJ5bG5ocHFybmt1d2pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1Mzg1MjUsImV4cCI6MTk5NDExNDUyNX0.qatEOFaoqB22SCcTOwhrrIg__mMFujY9haf6ixYe5oc",
+  },
+};
+const response = await fetch(url, options);
+const myJson = await response.json();
+---
+
+<html lang="en">
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <title>Astro</title>
+
+  <body>
+    <details class="debugger">
+      <summary>o</summary>
+      <div class="debugContainer">
+        <Debug {myJson} />
+      </div>
+    </details>
+    <main>
+      <Nav />
+      <button>stupid toggle</button>
+      <section class="filter_on_type_is_distortion_overdrive_fuzz">
+        {
+          myJson.map((element) => {
+            if (element.type === "distortion_overdrive_fuzz") {
+              return <PedalCard jsonObj={element} />;
+            }
+          })
+        }
+      </section>
+      <section class="filter_on_type_is_pitch_modulation">
+        {
+          myJson.map((element) => {
+            if (element.type === "pitch_modulation") {
+              return <PedalCard jsonObj={element} />;
+            }
+          })
+        }
+      </section>
+    </main>
+  </body>
+  <script>
+    const button = document.querySelector("button");
+    const filter_distortion_overdrive_fuzz = document.querySelector(".filter_on_type_is_distortion_overdrive_fuzz");
+    const filter_pitch_modulation = document.querySelector(".filter_on_type_is_pitch_modulation");
+
+    filter_distortion_overdrive_fuzz.style.display = "none";
+    button.addEventListener("click", () => {
+      if (filter_distortion_overdrive_fuzz.style.display === "none") {
+        filter_distortion_overdrive_fuzz.style.display = "grid";
+        filter_pitch_modulation.style.display = "none";
+      } else {
+        filter_distortion_overdrive_fuzz.style.display = "none";
+        filter_pitch_modulation.style.display = "grid";
+      }
+    });
+  </script>
+</html>
