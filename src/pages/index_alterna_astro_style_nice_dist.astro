@@ -1,0 +1,31 @@
+---
+// import Nav from "../components/Nav.astro";
+import FilterNav_alterna_nice from "../components/FilterNav_alterna_nice.astro";
+import Layout_alterna_astro_style_nice from "../layouts/Layout_alterna_astro_style_nice.astro";
+import PedalCard from "../components/PedalCard.astro";
+
+import "../styles/global.css";
+const url = "https://fcmtldrylnhpqrnkuwjf.supabase.co/rest/v1/pedals_w_3";
+
+const options = {
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjbXRsZHJ5bG5ocHFybmt1d2pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1Mzg1MjUsImV4cCI6MTk5NDExNDUyNX0.qatEOFaoqB22SCcTOwhrrIg__mMFujY9haf6ixYe5oc",
+  },
+};
+const response = await fetch(url, options);
+const myJson = await response.json();
+---
+
+<Layout_alterna_astro_style_nice>
+  <FilterNav_alterna_nice />
+  <section class="card_container">
+    {
+      myJson.map((element) => {
+        if (element.type === "distortion_overdrive_fuzz") {
+          return <PedalCard jsonObj={element} />;
+        }
+      })
+    }
+  </section>
+</Layout_alterna_astro_style_nice>
