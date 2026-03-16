@@ -5,12 +5,12 @@ import FilterNav_alterna from "../components/FilterNav_alterna.astro";
 import PedalCard from "../components/PedalCard.astro";
 //import FilterNav from "../components/FilterNav.astro";
 import "../styles/global.css";
-const url = "https://mjjuobnpjkqieqqajriw.supabase.co/rest/v1/pedal_table";
+const url = "https://eiqbbwrfdkdkbnpdmieb.supabase.co/rest/v1/pedals";
 
 const options = {
   headers: {
     apikey:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qanVvYm5wamtxaWVxcWFqcml3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NzM5NjIsImV4cCI6MjA3ODM0OTk2Mn0.7HbvckmVsFh6cNuQW8w6rCGZ9RxoOVL0r_iFn6CVLrA",
+      "sb_publishable_wuLWO9Is5TLxSmOpaIXt0w_owCTXGFY",
   },
 };
 const response = await fetch(url, options);
