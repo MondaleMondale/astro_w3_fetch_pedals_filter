@@ -5,12 +5,11 @@ import Nav from "../components/Nav.astro";
 import PedalCard from "../components/PedalCard.astro";
 //import FilterNav_alterna from "../components/FilterNav_alterna.astro";
 import "../styles/global.css";
-const url = "https://eiqbbwrfdkdkbnpdmieb.supabase.co/rest/v1/pedals";
+const url = `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/pedals`;
 
 const options = {
   headers: {
-    apikey:
-      "sb_publishable_wuLWO9Is5TLxSmOpaIXt0w_owCTXGFY",
+    apikey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
   },
 };
 const response = await fetch(url, options);
