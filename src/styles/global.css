@@ -55,3 +55,8 @@ video {
 .debugContainer {
     position: absolute;
 }
+
+.card_container{
+
+    background-color: black;
+}

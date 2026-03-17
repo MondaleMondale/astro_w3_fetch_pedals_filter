@@ -4,7 +4,7 @@ const { jsonObj } = Astro.props;
 
 <article data-type={jsonObj.type} data-shortname={jsonObj.shortname} class="pedal_card">
   <div id="img_container">
-    <img src={"/bosspedaler/" + jsonObj.image} alt="guitar effect" />
+    <img src={"/bosspedaler/" + jsonObj.webp} alt="guitar effect" />
     <!-- <img src={"https://mjjuobnpjkqieqqajriw.supabase.co/storage/v1/object/public/pedal_imgs/" + jsonObj.image} alt="guitar effect" /> -->
   </div>
 
@@ -17,7 +17,7 @@ const { jsonObj } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(234, 243, 243);
+    background-color: black
     border-radius: 4px;
     padding-top: 10px;
     height: 400px;
@@ -29,15 +29,16 @@ const { jsonObj } = Astro.props;
     justify-content: center;
     align-items: center;
 
-    background-color: white;
+    background-color: black;
     width: 90%;
     height: 80%;
     border-radius: 4px;
     margin-bottom: 10px;
+    /* filter: invert(); */
   }
   #text_container {
     /* margin-top: 4px; */
-    background-color: white;
+    background-color: black
     width: 90%;
     border-radius: 4px;
     transition: 0.5s all;
