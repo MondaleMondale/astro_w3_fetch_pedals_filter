@@ -6,14 +6,18 @@ import PedalCard from "../components/PedalCard.astro";
 //import FilterNav_alterna from "../components/FilterNav_alterna.astro";
 import "../styles/global.css";
 // const url = "https://mjjuobnpjkqieqqajriw.supabase.co/rest/v1/pedal_table";
-const url = "https://eiqbbwrfdkdkbnpdmieb.supabase.co/rest/v1/pedals";
+// const url = "https://eiqbbwrfdkdkbnpdmieb.supabase.co/rest/v1/pedals";
+const url = `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/pedals`;
 
 const options = {
   headers: {
     //   apikey:
     //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qanVvYm5wamtxaWVxcWFqcml3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NzM5NjIsImV4cCI6MjA3ODM0OTk2Mn0.7HbvckmVsFh6cNuQW8w6rCGZ9RxoOVL0r_iFn6CVLrA",
     // },
-    apikey: "sb_publishable_wuLWO9Is5TLxSmOpaIXt0w_owCTXGFY",
+   // apikey: "sb_publishable_wuLWO9Is5TLxSmOpaIXt0w_owCTXGFY",
+ 
+    apikey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+
   },
 };
 const response = await fetch(url, options);

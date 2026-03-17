@@ -1,11 +1,10 @@
 ---
 export async function getStaticPaths() {
-  const url = "https://eiqbbwrfdkdkbnpdmieb.supabase.co/rest/v1/pedals";
+const url = `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/pedals`;
 
   const options = {
     headers: {
-      apikey:
-        "sb_publishable_wuLWO9Is5TLxSmOpaIXt0w_owCTXGFY",
+      apikey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
     },
   };
   const data = await fetch(url, options).then((response) => response.json());

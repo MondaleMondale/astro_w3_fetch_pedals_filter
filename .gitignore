@@ -24,3 +24,5 @@ pnpm-debug.log*
 # klaus
 
 recoverd_db_from_sleeping_supa/
+
+.env
