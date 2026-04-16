@@ -21,19 +21,36 @@ const { jsonObj } = Astro.props;
     border-radius: 4px;
     padding-top: 10px;
     height: 400px;
+    position:relative;
     /* aspect-ratio: 1/2; */
+    
   }
+#img_container:after {
+    position: absolute;
+    content:"";
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    background: radial-gradient(ellipse at 35% 30%,rgba(5, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 70%);
+}
 
+
+#img_container:hover:after {
+    background: radial-gradient(ellipse,rgba(5, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 100%);
+}
   #img_container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
     background-color: black;
-    width: 90%;
-    height: 80%;
+     width: 90%;
+     height: 80%; 
     border-radius: 4px;
     margin-bottom: 10px;
+    
     /* filter: invert(); */
   }
   #text_container {
@@ -43,11 +60,12 @@ const { jsonObj } = Astro.props;
     border-radius: 4px;
     transition: 0.5s all;
     text-decoration: none;
-    color: rgb(227, 174, 105);
+    /* color: rgb(227, 174, 105); */
+    color: slateblue;
   }
   #text_container:hover {
-    background-color: rgb(225, 224, 224);
-    color: slateblue;
+    filter: drop-shadow(0 0 1rem white);
+     /* background-color: rgb(225, 224, 224);  */
   }
   h3 {
     margin-left: 12px;
